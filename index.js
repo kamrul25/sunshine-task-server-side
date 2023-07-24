@@ -36,6 +36,13 @@ async function run() {
         const result = await allJobInfo.find({}).toArray()
         res.json(result)
     })
+
+    app.post("/jobs", async(req, res)=>{
+      const data = req.body;
+      const result = await allJobInfo.insertOne(data);
+      res.json(result)
+    })
+
     app.get("/topBD", async(req, res)=>{
         const result = await topBdItCompanies.find({}).toArray()
         res.json(result)
