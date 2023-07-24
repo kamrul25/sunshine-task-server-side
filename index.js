@@ -29,9 +29,19 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
     const allJobInfo = client.db(`${process.env.DB_USER}`).collection("allJobInfo")
+    const topBdItCompanies = client.db(`${process.env.DB_USER}`).collection("topBdItCompanies")
+    const topITCompanies = client.db(`${process.env.DB_USER}`).collection("topITCompanies")
 
     app.get("/jobs", async(req, res)=>{
         const result = await allJobInfo.find({}).toArray()
+        res.json(result)
+    })
+    app.get("/topBD", async(req, res)=>{
+        const result = await topBdItCompanies.find({}).toArray()
+        res.json(result)
+    })
+    app.get("/topWorld", async(req, res)=>{
+        const result = await topITCompanies.find({}).toArray()
         res.json(result)
     })
 
